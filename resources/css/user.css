@@ -1,0 +1,43 @@
+/* resources/css/user.css */
+
+/* Container Form Pengaduan */
+.form-container {
+    @apply bg-gray-100 p-8 rounded-lg shadow-sm;
+}
+
+/* Label Form */
+.form-label {
+    @apply block font-bold text-gray-800 mb-2;
+}
+
+/* Input Form */
+.form-input {
+    @apply w-full bg-white border border-gray-300 rounded-md p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-green-600 transition;
+}
+
+/* Area Upload Foto */
+.upload-area {
+    @apply bg-gray-200 border-2 border-dashed border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:bg-gray-300 transition;
+}
+
+.upload-area svg {
+    @apply w-10 h-10 mx-auto text-gray-500 mb-2;
+}
+
+/* Tombol Kirim */
+.btn-kirim {
+    @apply bg-[#1a6840] text-white font-bold py-2 px-8 rounded-full hover:bg-green-800 transition float-right;
+}
+
+/* Tabel Aktivitas User */
+.user-table {
+    @apply w-full text-center border-collapse border border-black;
+}
+
+.user-table th {
+    @apply bg-gray-200 border border-black p-3 font-semibold text-sm;
+}
+
+.user-table td {
+    @apply border border-black p-3 text-sm;
+}

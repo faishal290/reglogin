@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@layer base {
+    body {
+        @apply bg-white text-gray-800 antialiased;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+}
+
+/* 
+  Anda bisa menambahkan custom class Tailwind di sini jika diperlukan.
+  Contoh:
+  .btn-primary {
+     @apply bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition;
+  }
+*/

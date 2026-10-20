@@ -1,0 +1,41 @@
+/* resources/css/admin.css */
+
+/* Card Statistik */
+.stat-card {
+    @apply p-4 rounded-lg shadow-sm border border-gray-100 h-full;
+}
+
+.stat-card-icon {
+    @apply w-6 h-6 mr-2;
+}
+
+.stat-card-title {
+    @apply flex items-center font-bold text-gray-700 mb-3;
+}
+
+.stat-card-number {
+    @apply text-3xl font-extrabold text-center text-gray-800;
+}
+
+/* Warna khusus card */
+.card-aspirasi { @apply bg-blue-100; }
+.card-proses { @apply bg-yellow-100; }
+.card-selesai { @apply bg-green-100; }
+
+/* Tabel Admin */
+.admin-table {
+    @apply w-full text-center border-collapse border border-black;
+}
+
+.admin-table th {
+    @apply bg-gray-200 border border-black p-3 font-semibold text-sm;
+}
+
+.admin-table td {
+    @apply border border-black p-3 text-sm;
+}
+
+/* Badge Status */
+.badge-aspirasi { @apply bg-gray-500 text-white px-3 py-1 rounded-full text-xs font-bold; }
+.badge-proses { @apply bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold; }
+.badge-selesai { @apply bg-green-200 text-green-800 px-3 py-1 rounded-full text-xs font-bold; }
