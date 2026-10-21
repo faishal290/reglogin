@@ -3,9 +3,7 @@
 @section('content')
 <header class="flex flex-col gap-4 bg-[#1a6840] px-5 py-4 text-white shadow-md sm:flex-row sm:items-center sm:justify-between sm:px-8">
     <div class="flex items-center gap-4">
-        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-dashed border-white bg-yellow-400 font-bold text-[#1a6840]">
-            SMS
-        </div>
+        <img src="{{ asset('images/logo msb.png') }}" alt="Logo Sekolah" class="h-12 w-auto object-contain">
         <div>
             <h1 class="m-0 text-lg font-bold leading-tight">PENGADUAN SARANA SEKOLAH</h1>
             <p class="m-0 text-xs opacity-90">SMK MUHAMMADIYAH 1 BANTUL (ADMIN)</p>

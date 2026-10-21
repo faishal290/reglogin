@@ -5,10 +5,8 @@
 <header class="flex flex-col gap-4 bg-[#1a6840] px-5 py-4 text-white shadow-md sm:flex-row sm:items-center sm:justify-between sm:px-8">
     <div class="flex items-center gap-4">
         <!-- Logo -->
-        <div class="w-12 h-12 bg-yellow-400 rounded-full flex justify-center items-center font-bold text-[#1a6840] border-2 border-dashed border-[#1a6840]">
-            SMS
-        </div>
-        <div>
+         <img src="{{ asset('images/logo msb.png') }}" alt="Logo Sekolah" class="h-12 w-auto object-contain">
+        <div> 
             <h1 class="text-lg font-bold m-0 leading-tight">PENGADUAN SARANA SEKOLAH</h1>
             <p class="text-xs m-0 opacity-90">SMK MUHAMMADIYAH 1 BANTUL</p>
         </div>

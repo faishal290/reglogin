@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pengaduan;
+use App\Models\user;
+use Illuminate\Htpp\Request;
 use Illuminate\Contracts\View\View;
 
 class DashboardController extends Controller
@@ -15,10 +17,17 @@ class DashboardController extends Controller
         $total_selesai = Pengaduan::where('status', 'selesai')->count();
         $pengaduans = Pengaduan::with('user')->latest()->take(5)->get();
 
+        // Hitung total siswa (role = 'user')
+        $total_user = User::where('role', 'user')->count();
+
+        // Ambil 5 pengaduan terbaru
+        $pengaduans = Pengaduan::with('user')->latest()->take(5)->get();
+
         return view('admin.dashboard', compact(
             'total_aspirasi',
             'total_proses',
             'total_selesai',
+            'total_user',
             'pengaduans',
         ));
     }

@@ -40,7 +40,7 @@
         <!-- Input Tanggal -->
         <div class="mb-5">
             <label class="block font-bold text-gray-800 mb-2">Tanggal</label>
-            <input type="date" name="tanggal" value="{{ old('tanggal') }}" class="w-full bg-white border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-green-600 transition" required>
+           <input type="date" name="tanggal" value="{{ date('Y-m-d') }}" readonly class="w-full bg-gray-100 border border-gray-300 rounded-md p-3 focus:outline-none cursor-not-allowed text-gray-500" required>
         </div>
 
         <!-- Area Upload Foto -->
