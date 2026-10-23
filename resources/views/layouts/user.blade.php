@@ -20,8 +20,8 @@
     @include('layouts.partials.user-sidebar')
     
     <!-- Main Content (Background Putih) -->
-    <main class="w-full min-w-0 flex-1 bg-white p-5 sm:p-8">
-        @yield('main-content')
-    </main>
+    <main class="flex-1 p-8 bg-gray-50">
+    @yield('main-content')
+</main>
 </div>
 @endsection

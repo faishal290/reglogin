@@ -15,34 +15,50 @@
 </head>
 <body class="flex min-h-screen items-center justify-center bg-[#f1f5f2] px-4 py-8 sm:px-6">
     <main class="grid w-full max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_-24px_rgba(20,92,66,0.28)] ring-1 ring-gray-200 md:grid-cols-2">
-        <section class="relative flex min-h-[220px] flex-col justify-between overflow-hidden bg-[#145c42] p-7 text-white sm:p-10 md:min-h-[640px] lg:p-12" aria-label="Tentang sistem">
-            <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border-[40px] border-white/5"></div>
-            <div class="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-[#8bc6a8]/15 blur-2xl"></div>
-            <a href="{{ route('login') }}" class="relative flex w-fit items-center gap-3" aria-label="Pengaduan Sekolah">
-                <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 21h18M5 21V7l8-4v18m6 0V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01m8-4v.01m0 3v.01" />
-                    </svg>
-                </span>
-                <span class="text-sm font-semibold tracking-wide">Pengaduan Sekolah</span>
-            </a>
+        
+        <!-- ========================================== -->
+        <!-- SISI KIRI: FOTO DENGAN TEKS (SUDAH DIPERBAIKI) -->
+        <!-- ========================================== -->
+        <section class="relative flex min-h-[220px] flex-col justify-between overflow-hidden md:min-h-[640px] p-7 text-white sm:p-10 lg:p-12" aria-label="Tentang sistem">
+            
+            <!-- 1. Gambar Latar Belakang -->
+            <!-- Pastikan nama file 'img.jpg' sesuai dengan yang ada di folder public/images -->
+            <img src="{{ asset('images/img.jpg') }}" alt="Gedung Sekolah" class="absolute inset-0 h-full w-full object-cover">
 
-            <div class="relative my-8 max-w-lg">
-                <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-emerald-50 ring-1 ring-white/15">
-                    <span class="h-2 w-2 rounded-full bg-[#a9dfbd]"></span>
-                    Suara Anda, perubahan bersama
-                </span>
-                <h1 class="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-[2.7rem]">
-                    Wujudkan lingkungan sekolah yang lebih baik.
-                </h1>
-                <p class="mt-4 max-w-md text-sm leading-6 text-emerald-50/85 sm:text-base">
-                    Sampaikan aspirasi dan pengaduan terkait sarana sekolah dengan mudah melalui satu tempat.
-                </p>
+            <!-- 2. Overlay Gelap (Menggunakan inline style agar pasti berfungsi) -->
+            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(20, 92, 66, 0.95), rgba(20, 92, 66, 0.7));"></div>
+
+            <!-- 3. Konten Teks -->
+            <div class="relative z-10 flex h-full w-full flex-col justify-between">
+                
+                <!-- Logo & Nama Aplikasi -->
+                <a href="{{ route('login') }}" class="flex w-fit items-center gap-3" aria-label="Pengaduan Sekolah">
+                   <img src="{{ asset('images/logo msb.png') }}" alt="Logo Sekolah" class="h-11 w-auto object-contain drop-shadow-md">
+                    <span class="text-sm font-semibold tracking-wide text-white">Pengaduan Sekolah</span>
+                </a>
+
+                <!-- Teks Utama -->
+                <div class="my-8 max-w-lg">
+                    <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md ring-1 ring-white/30">
+                        <span class="h-2 w-2 rounded-full bg-[#a9dfbd]"></span>
+                        Suara Anda, perubahan bersama
+                    </span>
+                    <h1 class="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.7rem]" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
+                        Wujudkan lingkungan sekolah yang lebih baik.
+                    </h1>
+                    <p class="mt-4 max-w-md text-sm leading-6 text-gray-100 sm:text-base" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
+                        Sampaikan aspirasi dan pengaduan terkait sarana sekolah dengan mudah melalui satu tempat.
+                    </p>
+                </div>
+
+                <!-- Teks Footer -->
+                <p class="text-xs text-gray-200">Bersama menjaga fasilitas sekolah untuk semua.</p>
             </div>
-
-            <p class="relative text-xs text-emerald-50/70">Bersama menjaga fasilitas sekolah untuk semua.</p>
         </section>
 
+        <!-- ========================================== -->
+        <!-- SISI KANAN: FORM LOGIN (Tetap Sama) -->
+        <!-- ========================================== -->
         <section class="flex items-center justify-center px-6 py-10 sm:px-10 md:px-12 lg:px-16">
             <div class="w-full max-w-md">
                 <div class="mb-8">

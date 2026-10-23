@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#145c42">
-    <title>Daftar - Pengaduan Sekolah</title>
+    <title>Daftar Akun - Pengaduan Sekolah</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,45 +15,61 @@
 </head>
 <body class="flex min-h-screen items-center justify-center bg-[#f1f5f2] px-4 py-8 sm:px-6">
     <main class="grid w-full max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_-24px_rgba(20,92,66,0.28)] ring-1 ring-gray-200 md:grid-cols-2">
-        <section class="relative flex min-h-[220px] flex-col justify-between overflow-hidden bg-[#145c42] p-7 text-white sm:p-10 md:min-h-[680px] lg:p-12" aria-label="Tentang sistem">
-            <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border-[40px] border-white/5"></div>
-            <div class="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-[#8bc6a8]/15 blur-2xl"></div>
-            <a href="{{ route('login') }}" class="relative flex w-fit items-center gap-3" aria-label="Pengaduan Sekolah">
-                <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 21h18M5 21V7l8-4v18m6 0V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01m8-4v.01m0 3v.01" />
-                    </svg>
-                </span>
-                <span class="text-sm font-semibold tracking-wide">Pengaduan Sekolah</span>
-            </a>
+        
+        <!-- ========================================== -->
+        <!-- SISI KIRI: FOTO DENGAN TEKS (SAMA SEPERTI LOGIN) -->
+        <!-- ========================================== -->
+        <section class="relative flex min-h-[220px] flex-col justify-between overflow-hidden md:min-h-[640px] p-7 text-white sm:p-10 lg:p-12" aria-label="Tentang sistem">
+            
+            <!-- 1. Gambar Latar Belakang -->
+            <img src="{{ asset('images/img.jpg') }}" alt="Gedung Sekolah" class="absolute inset-0 h-full w-full object-cover">
 
-            <div class="relative my-8 max-w-lg">
-                <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-emerald-50 ring-1 ring-white/15">
-                    <span class="h-2 w-2 rounded-full bg-[#a9dfbd]"></span>
-                    Suara Anda, perubahan bersama
-                </span>
-                <h1 class="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-[2.7rem]">
-                    Wujudkan lingkungan sekolah yang lebih baik.
-                </h1>
-                <p class="mt-4 max-w-md text-sm leading-6 text-emerald-50/85 sm:text-base">
-                    Sampaikan aspirasi dan pengaduan terkait sarana sekolah dengan mudah melalui satu tempat.
-                </p>
+            <!-- 2. Overlay Gelap -->
+            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(20, 92, 66, 0.95), rgba(20, 92, 66, 0.7));"></div>
+
+            <!-- 3. Konten Teks -->
+            <div class="relative z-10 flex h-full w-full flex-col justify-between">
+                
+                <!-- Logo & Nama Aplikasi -->
+                <a href="{{ route('login') }}" class="flex w-fit items-center gap-3" aria-label="Pengaduan Sekolah">
+                    <img src="{{ asset('images/logo msb.png') }}" alt="Logo Sekolah" class="h-11 w-auto object-contain drop-shadow-md">
+                    <span class="text-sm font-semibold tracking-wide text-white">Pengaduan Sekolah</span>
+                </a>
+
+                <!-- Teks Utama -->
+                <div class="my-8 max-w-lg">
+                    <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md ring-1 ring-white/30">
+                        <span class="h-2 w-2 rounded-full bg-[#a9dfbd]"></span>
+                        Suara Anda, perubahan bersama
+                    </span>
+                    <h1 class="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.7rem]" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
+                        Bergabunglah membangun sekolah yang lebih baik.
+                    </h1>
+                    <p class="mt-4 max-w-md text-sm leading-6 text-gray-100 sm:text-base" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
+                        Buat akun Anda sekarang dan mulai sampaikan aspirasi untuk fasilitas sekolah yang lebih memadai.
+                    </p>
+                </div>
+
+                <!-- Teks Footer -->
+                <p class="text-xs text-gray-200">Bersama menjaga fasilitas sekolah untuk semua.</p>
             </div>
-
-            <p class="relative text-xs text-emerald-50/70">Bersama menjaga fasilitas sekolah untuk semua.</p>
         </section>
 
+        <!-- ========================================== -->
+        <!-- SISI KANAN: FORM REGISTER                  -->
+        <!-- ========================================== -->
         <section class="flex items-center justify-center px-6 py-10 sm:px-10 md:px-12 lg:px-16">
             <div class="w-full max-w-md">
-                <div class="mb-7">
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e8f3ed] text-[#145c42]">
+                <div class="mb-8">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e8f3ed] text-[#145c42]">
+                        <!-- Ikon User + Tambah -->
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.1a7.5 7.5 0 0 1 15 0A17.9 17.9 0 0 1 12 21.75c-2.7 0-5.25-.6-7.5-1.65ZM19.5 8.25v6m3-3h-6" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
                     </div>
-                    <p class="text-sm font-semibold text-[#378361]">Mulai berkontribusi</p>
-                    <h2 class="mt-1 text-3xl font-bold tracking-tight text-gray-900">Buat akun baru</h2>
-                    <p class="mt-2 text-sm leading-6 text-gray-500">Daftar untuk menyampaikan aspirasi dan pengaduan.</p>
+                    <p class="text-sm font-semibold text-[#378361]">Mulai langkah pertama</p>
+                    <h2 class="mt-1 text-3xl font-bold tracking-tight text-gray-900">Buat Akun Baru</h2>
+                    <p class="mt-2 text-sm leading-6 text-gray-500">Lengkapi data diri Anda untuk mendaftar.</p>
                 </div>
 
                 @if ($errors->any())
@@ -64,34 +80,67 @@
 
                 <form action="{{ route('register') }}" method="POST" class="space-y-4">
                     @csrf
+                    
+                    <!-- Nama Lengkap -->
                     <div>
-                        <label for="name" class="mb-2 block text-sm font-medium text-gray-700">Nama lengkap</label>
-                        <input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="name" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="Masukkan nama lengkap" required>
+                        <label for="name" class="mb-2 block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                        <div class="relative">
+                            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </span>
+                            <input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="name" class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3.5 pl-12 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="Masukkan nama lengkap" required autofocus>
+                        </div>
                     </div>
 
+                    <!-- Email -->
                     <div>
                         <label for="email" class="mb-2 block text-sm font-medium text-gray-700">Email</label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="email" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="nama@email.com" required>
+                        <div class="relative">
+                            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21.75 6.75v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0-9.75 6.75L2.25 6.75" />
+                                </svg>
+                            </span>
+                            <input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="email" class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3.5 pl-12 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="nama@email.com" required>
+                        </div>
                     </div>
 
+                    <!-- Password -->
                     <div>
                         <label for="password" class="mb-2 block text-sm font-medium text-gray-700">Password</label>
-                        <input id="password" type="password" name="password" autocomplete="new-password" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="Minimal 8 karakter" minlength="8" required>
+                        <div class="relative">
+                            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16.5 10.5V6.75a4.5 4.5 0 0 0-9 0v3.75m-.75 0h10.5c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125H6.75c-.621 0-1.125-.504-1.125-1.125v-8.25c0-.621.504-1.125 1.125-1.125Z" />
+                                </svg>
+                            </span>
+                            <input id="password" type="password" name="password" autocomplete="new-password" class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3.5 pl-12 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="Minimal 8 karakter" minlength="8" required>
+                        </div>
                     </div>
 
+                    <!-- Konfirmasi Password -->
                     <div>
-                        <label for="password_confirmation" class="mb-2 block text-sm font-medium text-gray-700">Konfirmasi password</label>
-                        <input id="password_confirmation" type="password" name="password_confirmation" autocomplete="new-password" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="Ulangi password" minlength="8" required>
+                        <label for="password_confirmation" class="mb-2 block text-sm font-medium text-gray-700">Konfirmasi Password</label>
+                        <div class="relative">
+                            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </span>
+                            <input id="password_confirmation" type="password" name="password_confirmation" autocomplete="new-password" class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3.5 pl-12 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="Ulangi password" minlength="8" required>
+                        </div>
                     </div>
 
-                    <button type="submit" class="w-full rounded-xl bg-[#26734f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#145c42]/15 transition hover:bg-[#145c42] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#378361]/30 active:scale-[0.99]">
-                        Buat akun
+                    <button type="submit" class="mt-2 w-full rounded-xl bg-[#26734f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#145c42]/15 transition hover:bg-[#145c42] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#378361]/30 active:scale-[0.99]">
+                        Daftar Sekarang
                     </button>
                 </form>
 
-                <p class="mt-6 text-center text-sm text-gray-500">
+                <p class="mt-7 text-center text-sm text-gray-500">
                     Sudah punya akun?
-                    <a href="{{ route('login') }}" class="font-semibold text-[#26734f] hover:text-[#145c42] hover:underline">Login</a>
+                    <a href="{{ route('login') }}" class="font-semibold text-[#26734f] hover:text-[#145c42] hover:underline">Masuk di sini</a>
                 </p>
             </div>
         </section>

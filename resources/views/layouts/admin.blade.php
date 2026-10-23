@@ -23,8 +23,8 @@
 <div class="flex min-h-[calc(100vh-80px)] flex-col md:flex-row">
     @include('layouts.partials.admin-sidebar')
 
-    <main class="min-w-0 flex-1 bg-gray-50 p-5 sm:p-8">
-        @yield('main-content')
-    </main>
+   <main class="flex-1 p-8 bg-gray-50">
+    @yield('main-content')
+   </main>
 </div>
 @endsection

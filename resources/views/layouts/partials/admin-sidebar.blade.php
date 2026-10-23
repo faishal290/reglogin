@@ -1,18 +1,37 @@
-<aside class="w-full shrink-0 border-b border-gray-200 bg-white p-4 md:min-h-full md:w-64 md:border-b-0 md:border-r md:p-6">
-    <nav class="flex flex-col gap-2">
-        <a href="{{ route('admin.dashboard') }}"
-           class="flex items-center gap-3 rounded-lg px-4 py-3 font-semibold transition {{ request()->routeIs('admin.dashboard') ? 'bg-[#e6d8d8] text-[#6a3b3b]' : 'text-gray-700 hover:bg-gray-100' }}">
-            <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path>
+<aside class="w-64 min-h-screen border-r border-gray-200 bg-white flex-shrink-0 flex flex-col justify-between pb-6 pt-6 mt-4">
+    <nav class="flex flex-col gap-2 px-4">
+        
+        <!-- Menu Dashboard -->
+        <a href="{{ route('admin.dashboard') }}" 
+           class="flex items-center gap-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 
+                  {{ request()->routeIs('admin.dashboard') ? 'bg-green-50 text-[#1a6840] border-l-4 border-[#1a6840] shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
             </svg>
             Dashboard
         </a>
-        <a href="{{ route('admin.pengaduan.index') }}"
-           class="flex items-center gap-3 rounded-lg px-4 py-3 font-semibold transition {{ request()->routeIs('admin.pengaduan.*') ? 'bg-[#e6d8d8] text-[#6a3b3b]' : 'text-gray-700 hover:bg-gray-100' }}">
-            <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path>
+
+        <!-- Menu Kelola Pengaduan -->
+        <a href="{{ route('admin.pengaduan.index') }}" 
+           class="flex items-center gap-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200 
+                  {{ request()->routeIs('admin.pengaduan.*') ? 'bg-green-50 text-[#1a6840] border-l-4 border-[#1a6840] shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
             </svg>
             Kelola Pengaduan
         </a>
     </nav>
+
+    <!-- Tombol Logout -->
+    <div class="px-4 mt-auto">
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-red-500 hover:bg-red-50 hover:text-red-700 transition-all duration-200 border border-transparent hover:border-red-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                Logout
+            </button>
+        </form>
+    </div>
 </aside>
