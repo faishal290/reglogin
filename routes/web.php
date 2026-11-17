@@ -27,7 +27,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     
-    Route::resource('pengaduan', UserPengaduan::class)->only(['index', 'create', 'store', 'show']);
+    Route::resource('pengaduan', UserPengaduan::class)->only(['index', 'create', 'store', 'show', 'destroy']);
 });
 
 // ==========================================
@@ -37,4 +37,15 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
     Route::resource('pengaduan', AdminPengaduan::class)->only(['index', 'show', 'update']);
+});
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    
+    // TAMBAHKAN BARIS INI UNTUK MENAMPILKAN DAFTAR SISWA
+    Route::get('/siswa', [AdminDashboardController::class, 'daftarSiswa'])->name('siswa.index');
+    
+    Route::resource('pengaduan', AdminPengaduan::class)->only(['index', 'show', 'update']);
+       
+    // TAMBAHKAN BARIS INI
+    Route::delete('/siswa/{id}', [AdminDashboardController::class, 'destroySiswa'])->name('siswa.destroy');
 });

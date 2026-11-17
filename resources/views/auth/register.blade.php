@@ -11,32 +11,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; }
+        
+        /* --- ANIMASI FADE IN UP --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-page {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .delay-100 { animation-delay: 0.1s; opacity: 0; }
     </style>
 </head>
 <body class="flex min-h-screen items-center justify-center bg-[#f1f5f2] px-4 py-8 sm:px-6">
-    <main class="grid w-full max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_-24px_rgba(20,92,66,0.28)] ring-1 ring-gray-200 md:grid-cols-2">
+    <!-- Tambahkan class animate-page pada main -->
+    <main class="animate-page grid w-full max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_-24px_rgba(20,92,66,0.28)] ring-1 ring-gray-200 md:grid-cols-2">
         
-        <!-- ========================================== -->
-        <!-- SISI KIRI: FOTO DENGAN TEKS (SAMA SEPERTI LOGIN) -->
-        <!-- ========================================== -->
+        <!-- SISI KIRI -->
         <section class="relative flex min-h-[220px] flex-col justify-between overflow-hidden md:min-h-[640px] p-7 text-white sm:p-10 lg:p-12" aria-label="Tentang sistem">
-            
-            <!-- 1. Gambar Latar Belakang -->
             <img src="{{ asset('images/img.jpg') }}" alt="Gedung Sekolah" class="absolute inset-0 h-full w-full object-cover">
-
-            <!-- 2. Overlay Gelap -->
             <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(20, 92, 66, 0.95), rgba(20, 92, 66, 0.7));"></div>
-
-            <!-- 3. Konten Teks -->
             <div class="relative z-10 flex h-full w-full flex-col justify-between">
-                
-                <!-- Logo & Nama Aplikasi -->
                 <a href="{{ route('login') }}" class="flex w-fit items-center gap-3" aria-label="Pengaduan Sekolah">
                     <img src="{{ asset('images/logo msb.png') }}" alt="Logo Sekolah" class="h-11 w-auto object-contain drop-shadow-md">
                     <span class="text-sm font-semibold tracking-wide text-white">Pengaduan Sekolah</span>
                 </a>
-
-                <!-- Teks Utama -->
                 <div class="my-8 max-w-lg">
                     <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md ring-1 ring-white/30">
                         <span class="h-2 w-2 rounded-full bg-[#a9dfbd]"></span>
@@ -49,20 +48,16 @@
                         Buat akun Anda sekarang dan mulai sampaikan aspirasi untuk fasilitas sekolah yang lebih memadai.
                     </p>
                 </div>
-
-                <!-- Teks Footer -->
                 <p class="text-xs text-gray-200">Bersama menjaga fasilitas sekolah untuk semua.</p>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- SISI KANAN: FORM REGISTER                  -->
-        <!-- ========================================== -->
-        <section class="flex items-center justify-center px-6 py-10 sm:px-10 md:px-12 lg:px-16">
+        <!-- SISI KANAN: FORM REGISTER -->
+        <!-- Tambahkan class animate-page delay-100 pada section -->
+        <section class="animate-page delay-100 flex items-center justify-center px-6 py-10 sm:px-10 md:px-12 lg:px-16">
             <div class="w-full max-w-md">
                 <div class="mb-8">
                     <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e8f3ed] text-[#145c42]">
-                        <!-- Ikon User + Tambah -->
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
@@ -80,8 +75,7 @@
 
                 <form action="{{ route('register') }}" method="POST" class="space-y-4">
                     @csrf
-                    
-                    <!-- Nama Lengkap -->
+                    <!-- Nama -->
                     <div>
                         <label for="name" class="mb-2 block text-sm font-medium text-gray-700">Nama Lengkap</label>
                         <div class="relative">
@@ -93,7 +87,6 @@
                             <input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="name" class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3.5 pl-12 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="Masukkan nama lengkap" required autofocus>
                         </div>
                     </div>
-
                     <!-- Email -->
                     <div>
                         <label for="email" class="mb-2 block text-sm font-medium text-gray-700">Email</label>
@@ -106,7 +99,6 @@
                             <input id="email" type="email" name="email" value="{{ old('email') }}" autocomplete="email" class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3.5 pl-12 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="nama@email.com" required>
                         </div>
                     </div>
-
                     <!-- Password -->
                     <div>
                         <label for="password" class="mb-2 block text-sm font-medium text-gray-700">Password</label>
@@ -119,7 +111,6 @@
                             <input id="password" type="password" name="password" autocomplete="new-password" class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3.5 pl-12 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-[#378361] focus:bg-white focus:ring-4 focus:ring-[#378361]/10" placeholder="Minimal 8 karakter" minlength="8" required>
                         </div>
                     </div>
-
                     <!-- Konfirmasi Password -->
                     <div>
                         <label for="password_confirmation" class="mb-2 block text-sm font-medium text-gray-700">Konfirmasi Password</label>
@@ -133,7 +124,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="mt-2 w-full rounded-xl bg-[#26734f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#145c42]/15 transition hover:bg-[#145c42] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#378361]/30 active:scale-[0.99]">
+                    <button type="submit" class="mt-2 w-full rounded-xl bg-[#26734f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#145c42]/15 transition duration-300 hover:bg-[#145c42] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#378361]/30 active:scale-[0.99]">
                         Daftar Sekarang
                     </button>
                 </form>

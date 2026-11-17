@@ -30,6 +30,20 @@ class PengaduanController extends Controller
         return view('user.pengaduan.show', compact('pengaduan'));
     }
 
+    public function destroy(string $id)
+    {
+        $pengaduan = Pengaduan::where('user_id', Auth::id())->findOrFail($id);
+        $foto = $pengaduan->foto;
+
+        $pengaduan->delete();
+
+        if ($foto && basename($foto) === $foto) {
+            File::delete(public_path('images/pengaduan/'.$foto));
+        }
+
+        return redirect()->route('pengaduan.index')->with('success', 'Aspirasi berhasil dihapus.');
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

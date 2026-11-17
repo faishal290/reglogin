@@ -86,13 +86,16 @@
             </div>
             
             <!-- Total Siswa -->
-            <div class="flex justify-between items-center bg-green-50/50 p-4 rounded-xl border border-green-100 hover:bg-green-50 transition">
-                <div class="flex items-center gap-3">
-                    <div class="bg-green-100 p-2 rounded-lg text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></div>
-                    <span class="text-gray-700 font-medium text-sm">Total Siswa</span>
-                </div>
-                <span class="text-2xl font-bold text-[#1a6840]">{{ $total_user }}</span>
-            </div>
+           <!-- Total Siswa (TANPA BORDER TEBAL) -->
+<div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+    <div class="flex items-center gap-3">
+        <div class="bg-green-100 p-2 rounded-lg text-green-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </div>
+        <span class="text-gray-600 font-medium text-sm">Total Siswa</span>
+    </div>
+    <span class="text-xl font-bold text-[#1a6840]">{{ $total_user }}</span>
+</div>
             
             <!-- Total Admin -->
             <div class="flex justify-between items-center bg-purple-50/50 p-4 rounded-xl border border-purple-100 hover:bg-purple-50 transition">

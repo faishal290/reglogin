@@ -27,7 +27,7 @@
                 <th class="w-48 p-4 text-sm font-semibold text-gray-700">Kategori/Tempat</th>
                 <th class="p-4 text-sm font-semibold text-gray-700">Aspirasi</th>
                 <th class="w-36 p-4 text-center text-sm font-semibold text-gray-700">Status</th>
-                <th class="w-32 p-4 text-center text-sm font-semibold text-gray-700">Aksi</th>
+                <th class="w-56 p-4 text-center text-sm font-semibold text-gray-700">Aksi</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
@@ -55,11 +55,21 @@
 
                 <!-- Tombol Aksi -->
                 <td class="p-4 text-center">
-                    <div class="flex justify-center">
+                    <div class="flex justify-center gap-2">
                         <a href="{{ route('pengaduan.show', $item->id) }}" class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                             Detail
                         </a>
+                        <form action="{{ route('pengaduan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus aspirasi ini?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" aria-label="Hapus" title="Hapus" class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md bg-red-600 px-3 py-2 text-xs font-medium text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18m-2 0-.9 14H5.9L5 6m4 0V4h6v2m-5 4v7m4-7v7"></path>
+                                </svg>
+                                <span>Hapus</span>
+                            </button>
+                        </form>
                     </div>
                 </td>
             </tr>

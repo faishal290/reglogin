@@ -11,33 +11,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; }
+        
+        /* --- ANIMASI FADE IN UP --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-page {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
     </style>
 </head>
 <body class="flex min-h-screen items-center justify-center bg-[#f1f5f2] px-4 py-8 sm:px-6">
-    <main class="grid w-full max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_-24px_rgba(20,92,66,0.28)] ring-1 ring-gray-200 md:grid-cols-2">
+    <!-- Tambahkan class animate-page pada main -->
+    <main class="animate-page grid w-full max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_-24px_rgba(20,92,66,0.28)] ring-1 ring-gray-200 md:grid-cols-2">
         
-        <!-- ========================================== -->
-        <!-- SISI KIRI: FOTO DENGAN TEKS (SUDAH DIPERBAIKI) -->
-        <!-- ========================================== -->
+        <!-- SISI KIRI -->
         <section class="relative flex min-h-[220px] flex-col justify-between overflow-hidden md:min-h-[640px] p-7 text-white sm:p-10 lg:p-12" aria-label="Tentang sistem">
-            
-            <!-- 1. Gambar Latar Belakang -->
-            <!-- Pastikan nama file 'img.jpg' sesuai dengan yang ada di folder public/images -->
             <img src="{{ asset('images/img.jpg') }}" alt="Gedung Sekolah" class="absolute inset-0 h-full w-full object-cover">
-
-            <!-- 2. Overlay Gelap (Menggunakan inline style agar pasti berfungsi) -->
             <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(20, 92, 66, 0.95), rgba(20, 92, 66, 0.7));"></div>
-
-            <!-- 3. Konten Teks -->
             <div class="relative z-10 flex h-full w-full flex-col justify-between">
-                
-                <!-- Logo & Nama Aplikasi -->
                 <a href="{{ route('login') }}" class="flex w-fit items-center gap-3" aria-label="Pengaduan Sekolah">
                    <img src="{{ asset('images/logo msb.png') }}" alt="Logo Sekolah" class="h-11 w-auto object-contain drop-shadow-md">
                     <span class="text-sm font-semibold tracking-wide text-white">Pengaduan Sekolah</span>
                 </a>
-
-                <!-- Teks Utama -->
                 <div class="my-8 max-w-lg">
                     <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md ring-1 ring-white/30">
                         <span class="h-2 w-2 rounded-full bg-[#a9dfbd]"></span>
@@ -50,16 +49,13 @@
                         Sampaikan aspirasi dan pengaduan terkait sarana sekolah dengan mudah melalui satu tempat.
                     </p>
                 </div>
-
-                <!-- Teks Footer -->
                 <p class="text-xs text-gray-200">Bersama menjaga fasilitas sekolah untuk semua.</p>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- SISI KANAN: FORM LOGIN (Tetap Sama) -->
-        <!-- ========================================== -->
-        <section class="flex items-center justify-center px-6 py-10 sm:px-10 md:px-12 lg:px-16">
+        <!-- SISI KANAN: FORM LOGIN -->
+        <!-- Tambahkan class animate-page delay-100 pada section -->
+        <section class="animate-page delay-100 flex items-center justify-center px-6 py-10 sm:px-10 md:px-12 lg:px-16">
             <div class="w-full max-w-md">
                 <div class="mb-8">
                     <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e8f3ed] text-[#145c42]">
@@ -116,7 +112,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full rounded-xl bg-[#26734f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#145c42]/15 transition hover:bg-[#145c42] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#378361]/30 active:scale-[0.99]">
+                    <button type="submit" class="w-full rounded-xl bg-[#26734f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#145c42]/15 transition duration-300 hover:bg-[#145c42] hover:-translate-y-0.5 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#378361]/30 active:scale-[0.99]">
                         Masuk ke akun
                     </button>
                 </form>
