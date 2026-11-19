@@ -18,11 +18,9 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      */
-    public function test_the_homepage_redirects_to_login(): void
+    public function test_the_homepage_is_accessible_to_guests(): void
     {
-        $response = $this->get('/');
-
-        $response->assertRedirect('/login');
+        $this->get(route('home'))->assertOk();
     }
 
     public function test_role_middleware_aliases_resolve_to_their_classes(): void
@@ -243,7 +241,16 @@ class ExampleTest extends TestCase
     {
         $this->actingAs(User::factory()->create())
             ->post(route('logout'))
-            ->assertRedirect('/login');
+            ->assertRedirect(route('home'));
+
+        $this->assertGuest();
+    }
+
+    public function test_admin_can_log_out(): void
+    {
+        $this->actingAs(User::factory()->create(['role' => 'admin']))
+            ->post(route('logout'))
+            ->assertRedirect(route('home'));
 
         $this->assertGuest();
     }

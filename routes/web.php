@@ -12,24 +12,10 @@ use App\Http\Controllers\Admin\PengaduanController as AdminPengaduan;
 // ROUTE HALAMAN DEPAN & STATIS (Bisa diakses tanpa login)
 // ==========================================
 Route::get('/', function () {
-    return view('welcome'); // Mengarah ke Landing Page
-})->name('home');
+    return redirect('/login');
+});
 
-Route::get('/tentang', function () {
-    return view('tentang');
-})->name('tentang');
-
-Route::get('/fitur', function () {
-    return view('fitur');
-})->name('fitur');
-
-Route::get('/panduan', function () {
-    return view('panduan');
-})->name('panduan');
-
-// ==========================================
-// ROUTE AUTH (Login/Register/Logout)
-// ==========================================
+// Route Auth (Login/Logout)
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register')->middleware('guest');
