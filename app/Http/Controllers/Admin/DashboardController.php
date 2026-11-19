@@ -19,6 +19,7 @@ class DashboardController extends Controller
 
         // Hitung total siswa (role = 'user')
         $total_user = User::where('role', 'user')->count();
+        $total_admin = User::where('role', 'admin')->count();
 
         // Ambil 5 pengaduan terbaru
         $pengaduans = Pengaduan::with('user')->latest()->take(5)->get();
@@ -28,6 +29,7 @@ class DashboardController extends Controller
             'total_proses',
             'total_selesai',
             'total_user',
+            'total_admin',
             'pengaduans',
         ));
     }
