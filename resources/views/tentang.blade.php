@@ -2,93 +2,109 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Tentang - Pengaduan Sekolah</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a6840">
+    <title>Tentang Aplikasi - Pengaduan Sarana Sekolah</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Poppins', sans-serif; } </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navbar Hijau -->
-    <nav class="bg-[#1a6840] text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center gap-3">
-                    <img src="{{ asset('images/logo msb.png') }}" alt="Logo" class="h-10 w-auto">
-                    <h1 class="font-bold text-lg">Pengaduan Sarana Sekolah</h1>
-                </div>
-                <div class="hidden md:flex gap-8 text-sm font-medium">
-                    <a href="{{ route('home') }}" class="hover:text-green-200 transition">Beranda</a>
-                    <a href="{{ route('tentang') }}" class="text-white font-bold border-b-2 border-white pb-1">Tentang</a>
-                  <a href="{{ route('fitur') }}" class="hover:text-green-200 transition">Fitur Layanan</a>
-                    <a href="{{ route('panduan') }}" class="hover:text-green-200 transition">Panduan</a>
-                </div>
-                <a href="{{ route('login') }}" class="bg-yellow-400 text-[#1a6840] px-6 py-2.5 rounded-lg font-bold hover:bg-yellow-300 transition">Masuk</a>
+<body class="public-page">
+    @include('layouts.partials.public-nav')
+
+    <main class="public-content">
+        <header class="public-intro">
+            <p class="public-eyebrow">Mengenal layanan</p>
+            <h1>Tentang Aplikasi Pengaduan</h1>
+            <p>Sarana bagi siswa untuk menyampaikan laporan fasilitas sekolah dan memantau tindak lanjutnya melalui satu aplikasi.</p>
+        </header>
+
+        <section class="public-card">
+            <div class="public-card-icon" aria-hidden="true">⌂</div>
+            <h2 class="purpose-heading">Tujuan Aplikasi</h2>
+            <p>Aplikasi Pengaduan Sarana Sekolah membantu siswa menyampaikan kondisi fasilitas yang perlu diperhatikan. Laporan dicatat agar dapat ditinjau oleh admin sekolah, yang dapat memperbarui status serta menambahkan tanggapan.</p>
+            <p>Siswa dapat membuka daftar Aktivitas untuk melihat laporan miliknya, detail status, dan tanggapan admin jika tersedia.</p>
+        </section>
+
+        <section class="public-section">
+            <div class="public-section-heading">
+                <h2>Siapa yang menggunakan aplikasi?</h2>
+                <p>Setiap peran memiliki akses sesuai kebutuhan penanganan laporan.</p>
             </div>
+            <div class="public-grid">
+                <article class="public-card">
+                    <div class="public-card-icon" aria-hidden="true">👩‍🎓</div>
+                    <h3>Siswa</h3>
+                    <p>Membuat laporan, membuka riwayat laporan sendiri, melihat status penanganan, dan membaca tanggapan admin.</p>
+                </article>
+                <article class="public-card">
+                    <div class="public-card-icon" aria-hidden="true">🛠️</div>
+                    <h3>Admin sekolah</h3>
+                    <p>Meninjau laporan, mengubah status penanganan, dan menuliskan keterangan untuk siswa.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="public-section">
+            <div class="public-section-heading">
+                <h2>Alur status laporan</h2>
+                <p>Status menunjukkan tahap penanganan yang terakhir dicatat admin.</p>
+            </div>
+            <div class="public-card status-list" aria-label="Arti status laporan">
+                <div class="status-row">
+                    <span class="status-badge">Aspirasi</span>
+                    <p>Laporan baru tercatat dan menunggu tindak lanjut.</p>
+                </div>
+                <div class="status-row">
+                    <span class="status-badge progress">Proses</span>
+                    <p>Laporan sedang ditangani.</p>
+                </div>
+                <div class="status-row">
+                    <span class="status-badge done">Selesai</span>
+                    <p>Penanganan laporan telah ditandai selesai oleh admin.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="public-section">
+            <div class="public-section-heading">
+                <h2>Informasi dan privasi laporan</h2>
+            </div>
+            <div class="public-callout">
+                Saat membuat laporan, siswa mengisi kategori/tempat dan uraian aspirasi. Tanggal terisi otomatis, sedangkan foto dapat dilampirkan secara opsional. Laporan siswa ditampilkan pada akun pemiliknya; admin dapat melihat laporan beserta nama dan email akun pelapor untuk menindaklanjutinya.
+            </div>
+        </section>
+
+        <section class="public-section">
+            <div class="public-section-heading">
+                <h2>Tentang sekolah</h2>
+                <p>Profil sekolah sebagai konteks layanan pengaduan sarana.</p>
+            </div>
+            <div class="public-card school-profile">
+                <div>
+                    <h3>Profil singkat</h3>
+                    <p>SMK Muhammadiyah 1 Bantul berkomitmen mencetak generasi muda yang unggul di bidang teknologi dan industri. Aplikasi ini menjadi salah satu wadah komunikasi siswa dan pihak sekolah terkait kondisi fasilitas belajar.</p>
+                </div>
+                <div>
+                    <h3>Visi</h3>
+                    <blockquote>“Membentuk tamatan yang berakhlak mulia, berprestasi, mandiri, dan berdaya saing di tingkat lokal maupun nasional.”</blockquote>
+                </div>
+                <div>
+                    <h3>Nilai layanan</h3>
+                    <p>Keterbukaan, kedisiplinan, dan pelayanan yang mendukung lingkungan belajar yang lebih baik.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="public-actions">
+            <a href="{{ route('panduan') }}" class="hero-button secondary light">Lihat Panduan</a>
+            <a href="{{ route('login') }}" class="hero-button primary">Mulai Lapor</a>
         </div>
-    </nav>
+    </main>
 
-    <!-- Konten Utama -->
-    <div class="max-w-3xl mx-auto px-4 py-12">
-        
-        <!-- JUDUL (Tetap Sederhana, Tidak Diubah) -->
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 border-l-4 border-[#1a6840] pl-4">Tentang Sekolah</h1>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
-            
-            <!-- SEJARAH SINGKAT -->
-            <h2 class="text-xl font-bold text-gray-800 mb-3">Sejarah Singkat</h2>
-            <p class="text-gray-600 leading-relaxed mb-4 text-sm">
-                SMK Muhammadiyah 1 Bantul didirikan sebagai wujud komitmen dalam mencetak generasi muda yang unggul di bidang teknologi dan industri. Sejak awal berdiri, sekolah ini terus berkembang pesat dengan menyediakan berbagai jurusan yang relevan dengan kebutuhan dunia kerja.
-            </p>
-            <p class="text-gray-600 leading-relaxed mb-8 text-sm">
-                Sistem Pengaduan Sarana Sekolah ini hadir sebagai wadah komunikasi antara siswa dan pihak sekolah untuk memastikan setiap kerusakan atau kekurangan fasilitas dapat segera ditangani secara transparan.
-            </p>
-
-            <hr class="border-gray-200 mb-8">
-
-            <!-- VISI -->
-            <h2 class="text-xl font-bold text-gray-800 mb-3">Visi</h2>
-            <div class="bg-gradient-to-br from-[#1a6840] to-[#238a55] text-white rounded-xl px-6 py-7 mb-8 text-center shadow-sm">
-                <p class="font-semibold italic text-base md:text-lg leading-relaxed">
-                    &ldquo;Membentuk tamatan yang berakhlak mulia, berprestasi, mandiri, dan berdaya saing di tingkat lokal maupun nasional.&rdquo;
-                </p>
-            </div>
-
-            <!-- MISI -->
-            <h2 class="text-xl font-bold text-gray-800 mb-3">Misi</h2>
-            <div class="space-y-4">
-                <div class="flex items-start gap-4 bg-green-50 p-5 rounded-xl border border-green-100">
-                    <span class="shrink-0 w-9 h-9 rounded-lg bg-[#1a6840] text-white font-bold flex items-center justify-center">1</span>
-                    <div>
-                        <h3 class="text-base font-bold text-gray-800 mb-1">Religiusitas &amp; Disiplin</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Menerapkan kedisiplinan dan kejujuran yang dilandasi ketaqwaan kepada Allah SWT melalui keterbukaan, kemitraan, dan pelayanan prima.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex items-start gap-4 bg-green-50 p-5 rounded-xl border border-green-100">
-                    <span class="shrink-0 w-9 h-9 rounded-lg bg-[#1a6840] text-white font-bold flex items-center justify-center">2</span>
-                    <div>
-                        <h3 class="text-base font-bold text-gray-800 mb-1">Kualitas Pembelajaran</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Menyelenggarakan pendidikan dan latihan yang berkualitas dengan mengedepankan keunggulan untuk berprestasi di bidang akademik dan non-akademik.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex items-start gap-4 bg-green-50 p-5 rounded-xl border border-green-100">
-                    <span class="shrink-0 w-9 h-9 rounded-lg bg-[#1a6840] text-white font-bold flex items-center justify-center">3</span>
-                    <div>
-                        <h3 class="text-base font-bold text-gray-800 mb-1">Budaya Industri &amp; Mandiri</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Melaksanakan layanan sekolah yang mengacu pada sistem manajemen mutu dan penerapan budaya industri untuk membekali siswa dengan pengetahuan, keterampilan, dan kemandirian.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+    <div class="public-footer">
+        @include('layouts.partials.footer')
     </div>
 </body>
 </html>

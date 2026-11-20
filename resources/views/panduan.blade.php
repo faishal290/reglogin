@@ -2,77 +2,110 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Panduan - Pengaduan Sekolah</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a6840">
+    <title>Panduan - Pengaduan Sarana Sekolah</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Poppins', sans-serif; } </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navbar (Sama seperti sebelumnya) -->
-    <nav class="bg-[#1a6840] text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center gap-3">
-                    <img src="{{ asset('images/logo msb.png') }}" alt="Logo" class="h-10 w-auto">
-                    <h1 class="font-bold text-lg">Pengaduan Sarana Sekolah</h1>
-                </div>
-                <div class="hidden md:flex gap-8 text-sm font-medium">
-                    <a href="{{ route('home') }}" class="hover:text-green-200 transition">Beranda</a>
-                    <a href="{{ route('tentang') }}" class="hover:text-green-200 transition">Tentang</a>
-                    <a href="{{ route('fitur') }}" class="hover:text-green-200 transition">Fitur layanan</a>
-                    <a href="{{ route('panduan') }}" class="text-white font-bold border-b-2 border-white pb-1">Panduan</a>
-                </div>
-                <a href="{{ route('login') }}" class="bg-yellow-400 text-[#1a6840] px-6 py-2.5 rounded-lg font-bold hover:bg-yellow-300 transition">Masuk</a>
+<body class="public-page">
+    @include('layouts.partials.public-nav')
+
+    <main class="public-content">
+        <header class="public-intro">
+            <p class="public-eyebrow">Langkah demi langkah</p>
+            <h1>Panduan Penggunaan</h1>
+            <p>Ikuti panduan berikut untuk membuat laporan dan melihat tindak lanjutnya.</p>
+        </header>
+
+        <section class="public-section">
+            <div class="public-section-heading">
+                <h2>Untuk siswa</h2>
+                <p>Siapkan akun dan informasi lokasi fasilitas sebelum mengirim laporan.</p>
             </div>
+            <div class="public-card guide-steps">
+                <article class="guide-step">
+                    <span class="guide-step-number">1</span>
+                    <div>
+                        <h3>Daftar atau masuk</h3>
+                        <p>Gunakan akun siswa. Jika mendaftar, lengkapi nama dan email serta buat password minimal 8 karakter.</p>
+                    </div>
+                </article>
+                <article class="guide-step">
+                    <span class="guide-step-number">2</span>
+                    <div>
+                        <h3>Buka Tambah Pengaduan</h3>
+                        <p>Pilih menu Tambah Pengaduan pada dashboard siswa.</p>
+                    </div>
+                </article>
+                <article class="guide-step">
+                    <span class="guide-step-number">3</span>
+                    <div>
+                        <h3>Isi detail laporan</h3>
+                        <p>Tuliskan kategori/tempat dan uraian masalah dengan jelas. Tanggal laporan diisi otomatis oleh formulir.</p>
+                    </div>
+                </article>
+                <article class="guide-step">
+                    <span class="guide-step-number">4</span>
+                    <div>
+                        <h3>Lampirkan foto bila perlu</h3>
+                        <p>Foto bersifat opsional. Jika melampirkan, gunakan format JPG atau PNG dengan ukuran maksimal 2 MB.</p>
+                    </div>
+                </article>
+                <article class="guide-step">
+                    <span class="guide-step-number">5</span>
+                    <div>
+                        <h3>Kirim dan pantau laporan</h3>
+                        <p>Tekan Kirim, lalu buka menu Aktivitas untuk melihat daftar laporan milik Anda. Pilih Detail untuk memeriksa status dan tanggapan admin.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="public-section">
+            <div class="public-section-heading">
+                <h2>Memahami status laporan</h2>
+                <p>Status diperbarui admin dan ditampilkan pada daftar serta detail laporan.</p>
+            </div>
+            <div class="public-card status-list">
+                <div class="status-row">
+                    <span class="status-badge">Aspirasi</span>
+                    <p>Laporan sudah tercatat dan menunggu tindak lanjut.</p>
+                </div>
+                <div class="status-row">
+                    <span class="status-badge progress">Proses</span>
+                    <p>Laporan sedang ditangani oleh pihak sekolah.</p>
+                </div>
+                <div class="status-row">
+                    <span class="status-badge done">Selesai</span>
+                    <p>Admin telah menandai penanganan laporan selesai.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="public-section">
+            <div class="public-section-heading">
+                <h2>Untuk admin</h2>
+            </div>
+            <div class="public-card">
+                <p>Masuk menggunakan akun admin, lalu buka daftar Pengaduan. Cari laporan berdasarkan kategori/tempat atau nama pelapor, atau gunakan filter status. Buka detail untuk meninjau isi laporan, kemudian perbarui status dan tambahkan tanggapan sebelum menyimpan perubahan.</p>
+            </div>
+        </section>
+
+        <section class="public-section public-callout">
+            <strong>Privasi:</strong> laporan siswa dapat dilihat oleh pemilik akun dan admin. Nama serta email akun pelapor ditampilkan kepada admin untuk membantu proses tindak lanjut.
+        </section>
+
+        <div class="public-actions">
+            <a href="{{ route('fitur') }}" class="hero-button secondary light">Lihat Fitur</a>
+            <a href="{{ route('login') }}" class="hero-button primary">Masuk dan mulai</a>
         </div>
-    </nav>
+    </main>
 
-    <!-- Konten Panduan -->
-    <div class="max-w-3xl mx-auto px-4 py-12">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 border-l-4 border-[#1a6840] pl-4">Panduan Penggunaan</h1>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
-            <div class="space-y-6">
-                
-                <!-- Langkah 1 -->
-                <div class="flex items-start gap-4">
-                    <div class="bg-green-100 text-[#1a6840] font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">1</div>
-                    <p class="text-gray-600 text-sm leading-relaxed pt-1"><strong>Login</strong> menggunakan akun siswa yang sudah didaftarkan.</p>
-                </div>
-
-                <!-- Langkah 2 -->
-                <div class="flex items-start gap-4">
-                    <div class="bg-green-100 text-[#1a6840] font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">2</div>
-                    <p class="text-gray-600 text-sm leading-relaxed pt-1">Buka menu <strong>"Tambah Pengaduan"</strong> di sidebar.</p>
-                </div>
-
-                <!-- Langkah 3 -->
-                <div class="flex items-start gap-4">
-                    <div class="bg-green-100 text-[#1a6840] font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">3</div>
-                    <p class="text-gray-600 text-sm leading-relaxed pt-1">Isi kategori, aspirasi, tanggal, dan unggah foto bukti kerusakan.</p>
-                </div>
-
-                <!-- Langkah 4 -->
-                <div class="flex items-start gap-4">
-                    <div class="bg-green-100 text-[#1a6840] font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">4</div>
-                    <p class="text-gray-600 text-sm leading-relaxed pt-1">Klik <strong>"Kirim"</strong> dan pantau statusnya di menu "Aktivitas".</p>
-                </div>
-
-                <!-- Langkah 5 -->
-                <div class="flex items-start gap-4">
-                    <div class="bg-green-100 text-[#1a6840] font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">5</div>
-                    <p class="text-gray-600 text-sm leading-relaxed pt-1">Tunggu tanggapan dari Admin dan lihat progres perbaikannya.</p>
-                </div>
-
-            </div>
-
-            <!-- Tombol Mulai -->
-            <div class="mt-10 text-center border-t border-gray-100 pt-6">
-                <a href="{{ route('login') }}" class="inline-block bg-[#1a6840] text-white px-8 py-3 rounded-lg font-bold text-sm hover:bg-green-800 transition shadow-md">
-                    Saya Mengerti, Mulai Lapor &rarr;
-                </a>
-            </div>
-        </div>
+    <div class="public-footer">
+        @include('layouts.partials.footer')
     </div>
 </body>
 </html>
