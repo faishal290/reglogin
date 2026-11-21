@@ -6,13 +6,19 @@
     <h2 class="text-3xl font-extrabold text-gray-800 border-l-4 border-[#1a6840] pl-3">Dashboard Admin</h2>
     <div class="text-sm text-gray-500 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200 flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-        Selamat datang, <span class="font-bold text-[#1a6840]">{{ Auth::user()->name }}</span>
+        @php
+            $jam = date('H');
+            if ($jam >= 5 && $jam < 12) $sapaan = 'Selamat Pagi';
+            elseif ($jam >= 12 && $jam < 15) $sapaan = 'Selamat Siang';
+            elseif ($jam >= 15 && $jam < 18) $sapaan = 'Selamat Sore';
+            else $sapaan = 'Selamat Malam';
+        @endphp
+        {{ $sapaan }}, <span class="font-bold text-[#1a6840]">{{ Auth::user()->name }}</span>
     </div>
 </div>
 
-<!-- 3 Card Statistik (Gradasi + Ikon Transparan) -->
+<!-- 3 Card Statistik -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-    
     <!-- Card Aspirasi -->
     <div class="bg-gradient-to-br from-indigo-100 to-indigo-200 p-6 rounded-2xl shadow-sm border border-indigo-200 relative overflow-hidden group hover:shadow-lg transition duration-300">
         <div class="flex items-center gap-3 mb-2 relative z-10">
@@ -22,6 +28,9 @@
             <span class="font-bold text-indigo-900">Aspirasi Baru</span>
         </div>
         <div class="text-5xl font-black text-indigo-900 relative z-10">{{ $total_aspirasi }}</div>
+        <a href="{{ route('admin.pengaduan.index') }}?status=aspirasi" class="relative z-10 inline-flex items-center gap-1 mt-3 text-xs font-bold text-indigo-700 hover:text-indigo-900 transition">
+            Lihat Detail <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
         <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition duration-300">
             <svg class="w-28 h-28" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path></svg>
         </div>
@@ -36,6 +45,9 @@
             <span class="font-bold text-yellow-900">Sedang Proses</span>
         </div>
         <div class="text-5xl font-black text-yellow-900 relative z-10">{{ $total_proses }}</div>
+        <a href="{{ route('admin.pengaduan.index') }}?status=proses" class="relative z-10 inline-flex items-center gap-1 mt-3 text-xs font-bold text-yellow-700 hover:text-yellow-900 transition">
+            Lihat Detail <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
         <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition duration-300">
             <svg class="w-28 h-28" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
         </div>
@@ -50,6 +62,9 @@
             <span class="font-bold text-green-900">Selesai</span>
         </div>
         <div class="text-5xl font-black text-green-900 relative z-10">{{ $total_selesai }}</div>
+        <a href="{{ route('admin.pengaduan.index') }}?status=selesai" class="relative z-10 inline-flex items-center gap-1 mt-3 text-xs font-bold text-green-700 hover:text-green-900 transition">
+            Lihat Detail <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
         <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition duration-300">
             <svg class="w-28 h-28" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
         </div>
@@ -58,25 +73,27 @@
 
 <!-- BAGIAN GRAFIK & RINGKASAN -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-    
     <!-- Kotak Kiri: Grafik -->
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 relative">
-        <h3 class="font-bold text-lg text-gray-800 mb-6 flex items-center gap-2">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 relative flex flex-col">
+        <h3 class="font-bold text-lg text-gray-800 mb-2 flex items-center gap-2">
             <span class="w-1.5 h-5 bg-[#1a6840] rounded-full"></span> Persentase Status
         </h3>
-        <div class="relative h-64 w-full flex justify-center">
+        <p class="text-xs text-gray-500 mb-4">Total keseluruhan: <span class="font-bold text-gray-800">{{ $total_aspirasi + $total_proses + $total_selesai }}</span> laporan</p>
+        <div class="relative h-64 w-full flex justify-center mb-4">
             <canvas id="statusChart"></canvas>
+        </div>
+        <div class="mt-auto border-t border-gray-100 pt-4 flex justify-between items-center">
+            <span class="text-sm text-gray-600">Rata-rata Penyelesaian</span>
+            <span class="text-sm font-bold text-green-700 bg-green-50 px-3 py-1 rounded-full">± 2 Hari</span>
         </div>
     </div>
 
-    <!-- Kotak Kanan: Ringkasan Sistem -->
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 relative">
+    <!-- Kotak Kanan: Ringkasan Sistem & Top Kategori -->
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 relative flex flex-col">
         <h3 class="font-bold text-lg text-gray-800 mb-6 flex items-center gap-2">
             <span class="w-1.5 h-5 bg-[#1a6840] rounded-full"></span> Ringkasan Sistem
         </h3>
-        
-        <div class="space-y-3">
-            <!-- Total Pengaduan -->
+        <div class="space-y-3 mb-6">
             <div class="flex justify-between items-center bg-blue-50/50 p-4 rounded-xl border border-blue-100 hover:bg-blue-50 transition">
                 <div class="flex items-center gap-3">
                     <div class="bg-blue-100 p-2 rounded-lg text-blue-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div>
@@ -84,20 +101,13 @@
                 </div>
                 <span class="text-2xl font-bold text-gray-800">{{ $total_aspirasi + $total_proses + $total_selesai }}</span>
             </div>
-            
-            <!-- Total Siswa -->
-           <!-- Total Siswa (TANPA BORDER TEBAL) -->
-<div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-    <div class="flex items-center gap-3">
-        <div class="bg-green-100 p-2 rounded-lg text-green-600">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-        </div>
-        <span class="text-gray-600 font-medium text-sm">Total Siswa</span>
-    </div>
-    <span class="text-xl font-bold text-[#1a6840]">{{ $total_user }}</span>
-</div>
-            
-            <!-- Total Admin -->
+            <div class="flex justify-between items-center bg-gray-50 p-4 rounded-xl border border-gray-100 hover:bg-gray-100 transition">
+                <div class="flex items-center gap-3">
+                    <div class="bg-green-100 p-2 rounded-lg text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></div>
+                    <span class="text-gray-600 font-medium text-sm">Total Siswa</span>
+                </div>
+                <span class="text-2xl font-bold text-[#1a6840]">{{ $total_user }}</span>
+            </div>
             <div class="flex justify-between items-center bg-purple-50/50 p-4 rounded-xl border border-purple-100 hover:bg-purple-50 transition">
                 <div class="flex items-center gap-3">
                     <div class="bg-purple-100 p-2 rounded-lg text-purple-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
@@ -105,6 +115,16 @@
                 </div>
                 <span class="text-2xl font-bold text-purple-600">{{ $total_admin }}</span>
             </div>
+        </div>
+        <div class="space-y-2">
+            @forelse($top_categories as $index => $cat)
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-700">{{ $index + 1 }}. {{ $cat->kategori }}</span>
+                    <span class="font-bold text-gray-800">{{ $cat->total }}</span>
+                </div>
+            @empty
+                <div class="text-sm text-gray-500 italic">Belum ada data kategori.</div>
+            @endforelse
         </div>
     </div>
 </div>
@@ -127,6 +147,7 @@
                 <th class="py-4 px-3 font-bold">Pelapor</th>
                 <th class="py-4 px-3 font-bold">Kategori</th>
                 <th class="py-4 px-3 font-bold">Status</th>
+                <th class="py-4 px-3 font-bold">Aksi</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
@@ -145,22 +166,25 @@
                         <span class="bg-green-50 text-green-700 border border-green-300 py-1.5 px-3 rounded-full text-xs font-bold uppercase tracking-wide">Selesai</span>
                     @endif
                 </td>
+                <td class="py-4 px-3">
+                    <a href="{{ route('admin.pengaduan.show', $item->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition border border-blue-200" title="Lihat Detail">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </a>
+                </td>
             </tr>
             @empty
             <tr>
-                <td colspan="5" class="py-8 text-center text-gray-500 text-sm">Belum ada data pengaduan.</td>
+                <td colspan="6" class="py-8 text-center text-gray-500 text-sm">Belum ada data pengaduan.</td>
             </tr>
             @endforelse
         </tbody>
     </table>
 </div>
 
-<!-- SCRIPT CHART.JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('statusChart').getContext('2d');
-        
         new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -177,10 +201,7 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { font: { family: 'sans-serif', size: 14 }, padding: 20 }
-                    }
+                    legend: { position: 'bottom', labels: { font: { family: 'sans-serif', size: 14 }, padding: 20 } }
                 }
             }
         });

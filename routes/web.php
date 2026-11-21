@@ -11,9 +11,27 @@ use App\Http\Controllers\Admin\PengaduanController as AdminPengaduan;
 // ==========================================
 // ROUTE HALAMAN DEPAN & STATIS (Bisa diakses tanpa login)
 // ==========================================
+
+// Halaman Beranda (Welcome)
 Route::get('/', function () {
-    return redirect('/login');
-});
+    return view('welcome');
+})->name('home');
+
+// Halaman Tentang
+Route::get('/tentang', function () {
+    return view('tentang'); // Pastikan kamu punya file resources/views/tentang.blade.php
+})->name('tentang');
+
+// Halaman Fitur Layanan
+Route::get('/fitur', function () {
+    return view('fitur'); // Pastikan kamu punya file resources/views/fitur.blade.php
+})->name('fitur');
+
+// Halaman Panduan
+Route::get('/panduan', function () {
+    return view('panduan'); // Pastikan kamu punya file resources/views/panduan.blade.php
+})->name('panduan');
+
 
 // Route Auth (Login/Logout)
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
@@ -28,7 +46,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     
-    // Resource untuk User (termasuk index, create, store, show, edit, update, destroy)
+    // Resource untuk User
     Route::resource('pengaduan', UserPengaduan::class);
 });
 
@@ -44,6 +62,6 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::get('/siswa', [AdminDashboardController::class, 'daftarSiswa'])->name('siswa.index');
     Route::delete('/siswa/{id}', [AdminDashboardController::class, 'destroySiswa'])->name('siswa.destroy');
     
-    // Manajemen Pengaduan (Admin hanya butuh index, show, update)
+    // Manajemen Pengaduan
     Route::resource('pengaduan', AdminPengaduan::class)->only(['index', 'show', 'update']);
 });
